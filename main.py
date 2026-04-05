@@ -9,6 +9,16 @@ import os
 import sys
 
 
+# Packager Path Helper
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller temp folder
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 # App Themeing
 ctk.set_appearance_mode("system")
 ctk.set_default_color_theme("green")
@@ -17,7 +27,7 @@ ctk.set_default_color_theme("green")
 app = ctk.CTk()
 app.title("Peridot Desktop vr.1.0")
 app.geometry("800x800")
-app.iconbitmap("icon.ico")
+app.iconbitmap(resource_path("icon.ico"))
 app.grid_rowconfigure(0, weight=1)
 app.grid_rowconfigure(1, weight=0)
 app.grid_rowconfigure(2, weight=0)
@@ -124,16 +134,6 @@ def github():
     webbrowser.open("https://github.com/LucidPuru")
 
 
-# Packager Path Helper
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS  # PyInstaller temp folder
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
-
-
 
 # UI
 # Main Frame
@@ -143,8 +143,8 @@ mainframe.grid_columnconfigure((0,1), weight = 1)
 
 # Logo
 logo = ctk.CTkImage(
-    light_image = Image.open("logo.png"),
-    dark_image = Image.open("logo.png"),
+    light_image = Image.open(resource_path("logo.png")),
+    dark_image = Image.open(resource_path("logo.png")),
     size = (600, 240)
 )
 logotext = ctk.CTkLabel(app, image = logo, text = "")
