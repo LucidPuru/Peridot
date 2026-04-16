@@ -1,22 +1,45 @@
+![Logo](https://github.com/LucidPuru/Peridot/blob/main/logo.png)
+
 # Peridot Music Downloader
+
 A desktop app for downloading lossless FLAC audio from Spotify using multiple sources.
 
+## Screenshots
+
+![App Screenshot](https://github.com/LucidPuru/Peridot/blob/main/Peridot%20Visual.png)
+
+## Author
+
+- [@LucidPuru](https://www.github.com/LucidPuru/)
+
+## Acknowledgements
+
+- [SpotiFLAC Python Module](https://github.com/ShuShuzinhuu/SpotiFLAC-Module-Version)
+- [Customtkinter UI Library](https://customtkinter.tomschimansky.com/)
+
 ## Features
-- Download tracks/albums/playlists from Spotify URLs
-- Specify downloaded file's location
-- Simple and modern UI
+
+- Download tracks/albums/playlists from Spotify URLS
+- Simple & modern UI
+- Open source & completely free :)
+- Made in Python :)
 
 ## Installation
+
+For .exe, go to releases and download latest build.
+
+Source Code
 git clone https://github.com/LucidPuru/Peridot.git
 cd peridot
 pip install -r requirements.txt
 python main.py
 
-## Disclaimer
-This project is for educational and private use only. The developer does not condone or encourage copyright infringement.
-Peridot is a third-party tool and is not affiliated with, endorsed by, or connected to Spotify, Tidal, Qobuz, Amazon Music or any other streaming service.
-You are solely responsible for:
-Ensuring your use of this software complies with your local laws.
-Reading and adhering to the Terms of Service of the respective platforms.
-Any legal consequences resulting from the misuse of this tool.
-The software is provided "as is", without warranty of any kind. The author assumes no liability for any bans, damages, or legal issues arising from its use.
+## Usage
+
+- Enter Spotify URL in entry box.
+- Select desired download location (or leave empty for default downloads folder)
+- Click on Download and watch the magic happen!
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
