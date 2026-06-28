@@ -198,7 +198,7 @@ status = ctk.CTkLabel(mainframe, text = "Status: Idle")
 status.grid(row = 6, column = 0, columnspan = 2)
 
 # Credits
-footer = ctk.CTkLabel(app, text = "Peridot Desktop vr.1.0", cursor = "hand2")
+footer = ctk.CTkLabel(app, text = "Peridot Desktop vr.1.1", cursor = "hand2")
 footer.grid(row = 3, pady = 30, column = 0)
 footer.bind("<Button-1>", lambda e: aboutpage())
 
