@@ -12,7 +12,7 @@ import sys
 # Packager Path Helper
 def resource_path(relative_path):
     try:
-        base_path = sys._MEIPASS  # PyInstaller temp folder
+        base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
 
@@ -28,13 +28,13 @@ app = ctk.CTk()
 app.title("Peridot Desktop vr.1.0")
 app.geometry("800x800")
 app.iconbitmap(resource_path("icon.ico"))
-app.grid_rowconfigure(0, weight=1)
-app.grid_rowconfigure(1, weight=0)
-app.grid_rowconfigure(2, weight=0)
-app.grid_rowconfigure(3, weight=0)
-app.grid_rowconfigure(4, weight=1)
-app.grid_columnconfigure(0, weight=1)
-
+app.grid_rowconfigure(0, weight = 1)
+app.grid_rowconfigure(1, weight = 0)
+app.grid_rowconfigure(2, weight = 0)
+app.grid_rowconfigure(3, weight = 0)
+app.grid_rowconfigure(4, weight = 1)
+app.grid_columnconfigure(0, weight = 1)
+app.grid_columnconfigure(1, weight = 0)
 
 # Location
 downloads_path = Path.home() / "Downloads"
@@ -62,11 +62,19 @@ def trackcollect(url):
         SpotiFLAC(
             url = url,
             output_dir = str(downloads_path),
-            services = ["qobuz", "amazon", "tidal", "spoti", "youtube"],
+            services = ['tidal','qobuz','deezer','amazon','soundcloud','youtube','apple','pandora','joox','netease','migu','kuwo'],
             filename_format = "{artist} - {title}",
-            use_track_numbers = True,
+            use_track_numbers = False,
+            use_album_track_numbers = True,
             use_artist_subfolders = True,
-            use_album_subfolders = True
+            use_album_subfolders = True,
+            first_artist_only = False,
+            quality = "LOSSLESS",
+            allow_fallback = True,
+            embed_lyrics = True,
+            lyrics_providers = ["spotify","apple","musixmatch","lrclib","amazon"],
+            enrich_metadata = True,
+            enrich_providers = ["deezer","apple","qobuz","tidal","soundcloud"]
         )
     
     except Exception as e:
@@ -123,7 +131,7 @@ def aboutpage():
     apopup.geometry("300x300")
     apopup.resizable(False, False)
 
-    about = ctk.CTkLabel(apopup, text = "Peridot Music Downloader\nVr.1.0.0\nMade with love by Puru\n\nI am a student passionate about programming and creating things that give me satisfaction. This was a short passion project. Its main goal was to learn something new.\n\nThis app is not officially assiciated with Spotify. I do not host any copyrighted material on my server. It simply uses 3rd party APIs to download tracks off of Tidal.", wraplength = 250, justify = "center")
+    about = ctk.CTkLabel(apopup, text = "Peridot Music Downloader\nVr.1.1.0\nMade with love by Puru\n\nI am a student passionate about programming and creating things that give me satisfaction. This was a short passion project. Its main goal was to learn something new.\n\nThis app is not officially assiciated with Spotify. I do not host any copyrighted material on my server. It simply uses 3rd party APIs to download tracks off of Tidal.", wraplength = 250, justify = "center")
     about.grid(row = 0, column = 0, padx = 20, pady = 20)
     gitbutt = ctk.CTkButton(apopup, text = "Github", command = github)
     gitbutt.grid(row = 1, column = 0, padx = 10, pady = 20)
@@ -134,6 +142,12 @@ def github():
     webbrowser.open("https://github.com/LucidPuru")
 
 
+def altertheme():
+    if ctk.get_appearance_mode() == "Light":
+        ctk.set_appearance_mode("Dark")
+    else:
+        ctk.set_appearance_mode("Light")
+
 
 # UI
 # Main Frame
@@ -143,12 +157,16 @@ mainframe.grid_columnconfigure((0,1), weight = 1)
 
 # Logo
 logo = ctk.CTkImage(
-    light_image = Image.open(resource_path("logo.png")),
-    dark_image = Image.open(resource_path("logo.png")),
+    light_image = Image.open(resource_path("logo_light.png")),
+    dark_image = Image.open(resource_path("logo_dark.png")),
     size = (600, 240)
 )
 logotext = ctk.CTkLabel(app, image = logo, text = "")
 logotext.grid(row = 1, column = 0)
+
+# Switch
+switch = ctk.CTkSwitch(app, text = "Theme", command = altertheme)
+switch.grid(row = 0, column = 1, padx = 20, pady = 20, sticky = "ne")
 
 # URL Entry
 urlabel = ctk.CTkLabel(mainframe, text = "Enter Spotify URL:")
